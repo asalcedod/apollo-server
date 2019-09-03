@@ -1,0 +1,38 @@
+type Cliente {
+    id: ID
+    nombre: String
+    apellido: String
+    edad: String
+    emails: [Email]
+    tipo: TipoCliente
+}
+enum TipoCliente {
+    BASICO
+    PREMIUM
+}
+type Email {
+    email: String
+}
+type Query {
+    getClientes(limite: Int): [Cliente]
+    getCliente(id: ID): Cliente
+}
+input EmailInput {
+    email: String
+}
+input ClienteInput {
+    id: ID
+    nombre: String!
+    apellido: String!
+    edad: String!
+    emails: [EmailInput]
+    tipo: TipoCliente!
+}
+""" Mutacion de Crear Clientes """
+type Mutation {
+    #Nombre del Resolver, Input con Datos y Valor que Retorna
+    """ Te permite crear Nuevos Clientes """
+    crearCliente(input: ClienteInput): Cliente
+    actualizarCliente(input: ClienteInput): Cliente
+    eliminarCliente( id: ID): String
+}
