@@ -1,18 +1,19 @@
 import mongoose from 'mongoose';
 
 mongoose.Promise = global.Promise
-mongoose. connect('mongodb://localhost/clientes', {useNewUrlParse: true});
+mongoose. connect('mongodb://localhost/users', {useNewUrlParse: true});
 
-// Defijnir el schema de cleintes
+// Defijnir el schema de Users
 
-const clienteSchema = new mongoose.Schema({
-    nombre: String,
-    apellido: String,
-    edad: Number,
+const userSchema = new mongoose.Schema({
+    name: String,
+    lastname: String,
+    age: Number,
     emails: Array,
-    tipo: String,
+    avatar: Array,
+    type: String,
 })
 
-const Clientes = mongoose.model('clientes', clienteSchema);
+const Users = mongoose.model('users', userSchema);
 
-export { Clientes };
+export { Users };
