@@ -1,60 +1,64 @@
 import mongoose from 'mongoose'
-import { Clientes } from './db';
+import { Users } from './db';
 import { rejects } from 'assert';
 
-class Cliente {
-    constructor(id, { nombre, apellido, emails, tipo }) {
+class User {
+    constructor(id, { name, lastname, username, age, emails, avatar, type }) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.age = age;
         this.emails = emails;
-        this.tipo = tipo;
+        this.avatar = avatar;
+        this.type = type;
     }
 }
 
 export const resolvers = {
     Query: {
-        getClientes: (root, { limite }) => {
-            return Clientes.find({}).limit(limite);
+        getUsers: (root, { limite }) => {
+            return Users.find({}).limit(limite);
         },
-        getCliente: (root, { id }) => {
+        getUser: (root, { id }) => {
             return new Promise((resolve, object) => {
-                Clientes.findById(id, (error, cliente) => {
+                Users.findById(id, (error, user) => {
                     if(error) rejects(error)
-                    else resolve(cliente)
+                    else resolve(user)
                 })
             });
         },
     },
     Mutation: {
-        crearCliente: (root, { input }) => {
-            const nuevoCliente = new Clientes({
-                nombre: input.nombre,
-                apellido: input.apellido,
-                edad: input.edad,
+        createUser: (root, { input }) => {
+            const newUser = new Users({
+                name: input.name,
+                lastname: input.lastname,
+                username: input.username,
+                age: input.age,
                 emails: input.emails,
-                tipo: input.tipo
+                avatar: input.avatar,
+                type: input.type
             });
-            nuevoCliente.id =nuevoCliente._id;
+            newUser.id =newUser._id;
             return new Promise((resolve, object) => {
-                nuevoCliente.save((error) => {
+                newUser.save((error) => {
                     if(error) rejects(error)
-                    else resolve(nuevoCliente)
+                    else resolve(newUser)
                 })
             });
         },
-        actualizarCliente: (root, { input }) => {
+        updateUser: (root, { input }) => {
             return new Promise((resolve, object) => {
-                Clientes.findOneAndUpdate({_id: input.id}, input, {new: true}, (error,cliente) => {
+                Users.findOneAndUpdate({_id: input.id}, input, {new: true}, (error,user) => {
                     if(error) rejects(error)
-                    else resolve(cliente)
+                    else resolve(user)
                 })
             });
         },
-        eliminarCliente: (root, { id }) => {
+        deleteUser: (root, { id }) => {
             return new Promise((resolve, object) => {
-                Clientes.findOneAndRemove({_id: id}, (error) => {
+                Users.findOneAndRemove({_id: id}, (error) => {
                     if(error) rejects(error)
                     else resolve("Se elimino correctamente")
                 })

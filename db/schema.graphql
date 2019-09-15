@@ -1,38 +1,52 @@
-type Cliente {
+type User {
     id: ID
-    nombre: String
-    apellido: String
-    edad: String
+    name: String
+    lastname: String
+    username: String
+    age: Int
     emails: [Email]
-    tipo: TipoCliente
+    avatar: [Avatar]
+    type: TypeUser
 }
-enum TipoCliente {
+enum TypeUser {
     BASICO
     PREMIUM
+}
+type Avatar {
+    name: String
+    ext: String
+    url: String
 }
 type Email {
     email: String
 }
 type Query {
-    getClientes(limite: Int): [Cliente]
-    getCliente(id: ID): Cliente
+    getUsers(limite: Int): [User]
+    getUser(id: ID): User
+}
+input AvatarInput {
+    name: String
+    ext: String
+    url: String
 }
 input EmailInput {
     email: String
 }
-input ClienteInput {
+input UserInput {
     id: ID
-    nombre: String!
-    apellido: String!
-    edad: String!
+    name: String
+    lastname: String
+    username: String
+    age: Int
     emails: [EmailInput]
-    tipo: TipoCliente!
+    avatar: AvatarInput
+    type: TypeUser
 }
-""" Mutacion de Crear Clientes """
+""" Mutacion de Crear Users """
 type Mutation {
     #Nombre del Resolver, Input con Datos y Valor que Retorna
-    """ Te permite crear Nuevos Clientes """
-    crearCliente(input: ClienteInput): Cliente
-    actualizarCliente(input: ClienteInput): Cliente
-    eliminarCliente( id: ID): String
+    """ Te permite crear Nuevos Users """
+    createUser(input: UserInput): User
+    updateUser(input: UserInput): User
+    deleteUser( id: ID): String
 }
