@@ -7,6 +7,7 @@ npm start
 
 Ejemplo de Querys
 ## Obtener 1 o Todos los usuarios
+```bash
 query{
   getUsers{
     name
@@ -23,8 +24,10 @@ query{
     }
   }
 }
+```
 
 ## Obtener 1  usuario especifico
+```bash
 query {
   getUser(id: "id") {
     name
@@ -41,9 +44,11 @@ query {
     }
   }
 }
+```
 
 # Mutaciones
 ## Crear Usuarios
+```bash
 mutation{
   createUser(input: {
     name: "Eduardo"
@@ -72,8 +77,10 @@ mutation{
     }
   }
 }
+```
 
 ## Actualizar Usuarios
+```bash
 mutation {
   updateUser(input: {
     id: "id"
@@ -86,8 +93,11 @@ mutation {
     name
   }
 }
+```
 
 ## Eliminar Usuarios
+```bash
 mutation {
   deleteUser(id: "id")
 }
+```
