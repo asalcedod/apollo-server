@@ -3,10 +3,11 @@ import { Users } from './db';
 import { rejects } from 'assert';
 
 class User {
-    constructor(id, { name, lastname, age, emails, avatar, type }) {
+    constructor(id, { name, lastname, username, age, emails, avatar, type }) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
+        this.username = username;
         this.age = age;
         this.emails = emails;
         this.avatar = avatar;
@@ -30,19 +31,20 @@ export const resolvers = {
     },
     Mutation: {
         createUser: (root, { input }) => {
-            const nuevoUser = new Users({
+            const newUser = new Users({
                 name: input.name,
                 lastname: input.lastname,
+                username: input.username,
                 age: input.age,
                 emails: input.emails,
                 avatar: input.avatar,
                 type: input.type
             });
-            nuevoUser.id =nuevoUser._id;
+            newUser.id =newUser._id;
             return new Promise((resolve, object) => {
-                nuevoUser.save((error) => {
+                newUser.save((error) => {
                     if(error) rejects(error)
-                    else resolve(nuevoUser)
+                    else resolve(newUser)
                 })
             });
         },

@@ -2,7 +2,8 @@ type User {
     id: ID
     name: String
     lastname: String
-    age: String
+    username: String
+    age: Int
     emails: [Email]
     avatar: [Avatar]
     type: UserType
@@ -33,12 +34,13 @@ input AvatarInput {
 }
 input UserInput {
     id: ID
-    name: String!
-    lastname: String!
-    age: String!
+    name: String
+    lastname: String
+    username: String
+    age: Int
     emails: [EmailInput]
     avatar: AvatarInput
-    type: UserType!
+    type: UserType
 }
 """ Mutacion de Crear Users """
 type Mutation {

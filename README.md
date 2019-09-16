@@ -1,6 +1,9 @@
-# apollo-server
+# Apollo Server
 
+Iniciamos con el siguiente comando.
+```bash
 npm start
+```
 
 Ejemplo de Querys
 ## Obtener 1 o Todos los usuarios
@@ -8,6 +11,8 @@ query{
   getUsers{
     name
     lastname
+    username
+    age
     emails{
       email
     }
@@ -22,8 +27,10 @@ query{
 ## Obtener 1  usuario especifico
 query {
   getUser(id: "id") {
-    nombre
-    apellido
+    name
+    lastname
+    username
+    age
     emails {
       email
     }
@@ -36,10 +43,12 @@ query {
 }
 
 # Mutaciones
+## Crear Usuarios
 mutation{
   createUser(input: {
     name: "Eduardo"
     lastname: "Carrillo"
+    username: "prueba2"
     age: "22"
     emails: [
       {email: "aaa"}
@@ -63,17 +72,22 @@ mutation{
     }
   }
 }
+
+## Actualizar Usuarios
 mutation {
   updateUser(input: {
     id: "id"
     name: "Antonio"
     lastname: "Salcedo"
-    age: "25"
+    username: "pruebauser"
+    age: 25
     type: PREMIUM
   }){
     name
   }
 }
+
+## Eliminar Usuarios
 mutation {
   deleteUser(id: "id")
 }
