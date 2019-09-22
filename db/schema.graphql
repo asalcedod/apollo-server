@@ -12,11 +12,6 @@ enum UserType {
     BASICO
     PREMIUM
 }
-type Avatar {
-    name: String
-    ext: String
-    url: String
-}
 type Email {
     email: String
 }
