@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 mongoose.Promise = global.Promise
 mongoose. connect('mongodb://localhost/users', {useNewUrlParse: true});
 
-// Defijnir el schema de cleintes
+// Defijnir el schema de Users
 
 const userSchema = new mongoose.Schema({
     name: String,

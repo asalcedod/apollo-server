@@ -6,9 +6,9 @@ type User {
     age: Int
     emails: [Email]
     avatar: [Avatar]
-    type: TypeUser
+    type: UserType
 }
-enum TypeUser {
+enum UserType {
     BASICO
     PREMIUM
 }
@@ -19,6 +19,11 @@ type Avatar {
 }
 type Email {
     email: String
+}
+type Avatar {
+    name: String
+    ext: String
+    url: String
 }
 type Query {
     getUsers(limite: Int): [User]
@@ -40,7 +45,7 @@ input UserInput {
     age: Int
     emails: [EmailInput]
     avatar: AvatarInput
-    type: TypeUser
+    type: UserType
 }
 """ Mutacion de Crear Users """
 type Mutation {

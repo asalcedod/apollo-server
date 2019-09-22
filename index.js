@@ -1,6 +1,6 @@
 import express from 'express';
 // GraphQL
-import {ApolloServer} from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import { typeDefs } from './db/schema';
 import { resolvers } from './db/resolvers'
 
